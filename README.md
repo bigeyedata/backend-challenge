@@ -9,8 +9,7 @@ Background
 
 The purpose of this challenge is to demostrate one's ability to code up a REST API.  The
 Server can be started with the command `./gradlew run`.  Feel free to test out the server to make
-sure it works and think about how you might want to solve the questions below, but please don't 
-start coding up a solution before the scheduled interview time.
+sure it works, but please don't start coding before the scheduled interview time.
 
 Note that we are using Hibernate as an ORM for this scaffold.  If you prefer a different ORM library,
 feel free to add that to the build.gradle and wire it up before the interview.
@@ -43,4 +42,3 @@ The following curl commands should return valid results:
 `curl localhost:8000/health`
 
 `curl localhost:8000/people/2`
-
