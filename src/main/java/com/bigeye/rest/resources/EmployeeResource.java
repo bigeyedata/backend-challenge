@@ -23,7 +23,7 @@ public class EmployeeResource {
     @GET
     @Path("/{id}")
     @UnitOfWork
-    public Employee getPerson(@PathParam("id") int employeeId) {
+    public Employee getEmployee(@PathParam("id") int employeeId) {
         Employee employee = employeeDAO.read(employeeId);
         if (employee == null) {
             throw new NotFoundException("No such user.");
