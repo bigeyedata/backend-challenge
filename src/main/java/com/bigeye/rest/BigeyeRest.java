@@ -1,11 +1,9 @@
 package com.bigeye.rest;
 
-import com.bigeye.rest.core.Login;
-import com.bigeye.rest.core.Person;
-import com.bigeye.rest.db.LoginDAO;
-import com.bigeye.rest.db.PersonDAO;
+import com.bigeye.rest.core.Employee;
+import com.bigeye.rest.db.EmployeeDAO;
+import com.bigeye.rest.resources.EmployeeResource;
 import com.bigeye.rest.resources.HealthResource;
-import com.bigeye.rest.resources.PersonResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
@@ -19,7 +17,7 @@ public class BigeyeRest extends Service<BigeyeRestConfiguration> {
     }
 
     private final HibernateBundle<BigeyeRestConfiguration> hibernateBundle =
-            new HibernateBundle<BigeyeRestConfiguration>(Person.class, Login.class) {
+            new HibernateBundle<BigeyeRestConfiguration>(Employee.class) {
                 @Override
                 public DatabaseConfiguration getDatabaseConfiguration(
                     BigeyeRestConfiguration configuration) {
@@ -43,10 +41,9 @@ public class BigeyeRest extends Service<BigeyeRestConfiguration> {
     @Override
     public void run(BigeyeRestConfiguration configuration,
                     Environment environment) {
-        final PersonDAO personDAO = new PersonDAO(hibernateBundle.getSessionFactory());
-        final LoginDAO loginDAO = new LoginDAO(hibernateBundle.getSessionFactory());
+        final EmployeeDAO employeeDAO = new EmployeeDAO(hibernateBundle.getSessionFactory());
 
         environment.addResource(new HealthResource());
-        environment.addResource(new PersonResource(personDAO));
+        environment.addResource(new EmployeeResource(employeeDAO));
     }
 }
